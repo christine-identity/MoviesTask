@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -29,7 +30,7 @@ class MoviesListFragment : Fragment() {
            val title=moviesObject[pos].title
            val overView = moviesObject[pos].overview
            val releaseDate = moviesObject[pos].releaseDate
-           val imageURL = moviesObject[pos].backdropPath
+           val imageURL = moviesObject[pos].posterPath
            val bundle = Bundle()
            bundle.putSerializable("title",title)
            bundle.putSerializable("overView",overView)
@@ -37,7 +38,7 @@ class MoviesListFragment : Fragment() {
            bundle.putSerializable("imageURL",imageURL)
           // bundle.putParcelable("id",result)
            //val bundle = bundleOf("id" to id)
-           Log.d("fragment xxxxxxxxxxxxxx", "gggg${overView}")
+           Log.d("fragment ", "${overView}")
            findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment,bundle)
 
        }
@@ -53,11 +54,9 @@ class MoviesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentMoviesListBinding.inflate(inflater,container,false)
-//        binding.movieTitle.setOnClickListener { view: View ->
-//            view.findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment)
-//
-//
-//        }
+
+        (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Popular Movies"
+
         MoviesObject.getPopularMovies(
                 onSuccess = ::onPopularMoviesFetched,
                 onError = ::onError)

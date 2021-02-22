@@ -7,6 +7,7 @@
     tools:context=".DescriptionFragment">
 
 
+
     <ImageView
         android:id="@+id/movieImage2"
         android:layout_width="141dp"
@@ -20,7 +21,7 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/releaseDate"
+        android:id="@+id/releaseDateText"
         android:layout_width="95dp"
         android:layout_height="16dp"
 

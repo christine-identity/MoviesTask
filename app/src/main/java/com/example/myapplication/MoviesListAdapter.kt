@@ -1,22 +1,14 @@
 package com.example.myapplication
 
 import ClickListener
-import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.net.toUri
-import androidx.core.os.bundleOf
-import androidx.databinding.BindingAdapter
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.example.myapplication.MoviesListAdapter.MovieViewHolder.Companion.from
 
 class MoviesListAdapter(
     private var movies: ArrayList<Result>,
@@ -55,7 +47,7 @@ class MoviesListAdapter(
 
 
         val movieTitle: TextView = itemView.findViewById(R.id.movieTitle)
-        val releaseDate: TextView = itemView.findViewById(R.id.releaseDate)
+        val releaseDate: TextView = itemView.findViewById(R.id.releseDate)
         val movieImage: ImageView = itemView.findViewById(R.id.movieImage)
 
         fun bind(movie: Result) {
