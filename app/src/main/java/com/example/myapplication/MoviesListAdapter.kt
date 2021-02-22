@@ -83,19 +83,4 @@ class MoviesListAdapter(
 
     }
 }
-//  init{
-//             itemView.setOnClickListener { v:View ->
-//                 val position=adapterPosition
-//                 Toast.makeText(itemView.context,"you clicked ${position+1}",Toast.LENGTH_SHORT).show()
-//             }
-//             val bundle = bundleOf("id" to adapterPosition+1)
-//             itemView.setOnClickListener { view: View ->
-//                 clickListener.onClick(adapterPosition)
-//                 val result = movies[adapterPosition]
-//                 view.findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment,bundle)
-
-// }
-//class MovieListener(val clickListener: (movieId: Long) -> Unit) {
-//    fun onClick(movie: Result) = clickListener(movie.id.toLong())
-//}
 

@@ -26,12 +26,19 @@ class MoviesListFragment : Fragment() {
 
    var adapter: MoviesListAdapter = MoviesListAdapter(ArrayList(), object : ClickListener {
        override fun onClick(pos: Int) {
-
-           val result = moviesObject[pos]
-           val id=pos;
-           val bundle = bundleOf("id" to id)
-           Log.d("fragment xxxxxxxxxxxxxx", "gggg${id}")
-           findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment,bundle)//moshkla fel bundle
+           val title=moviesObject[pos].title
+           val overView = moviesObject[pos].overview
+           val releaseDate = moviesObject[pos].releaseDate
+           val imageURL = moviesObject[pos].backdropPath
+           val bundle = Bundle()
+           bundle.putSerializable("title",title)
+           bundle.putSerializable("overView",overView)
+           bundle.putSerializable("releaseDate",releaseDate)
+           bundle.putSerializable("imageURL",imageURL)
+          // bundle.putParcelable("id",result)
+           //val bundle = bundleOf("id" to id)
+           Log.d("fragment xxxxxxxxxxxxxx", "gggg${overView}")
+           findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment,bundle)
 
        }
    })
