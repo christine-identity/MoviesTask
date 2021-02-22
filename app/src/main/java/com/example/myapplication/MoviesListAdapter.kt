@@ -31,7 +31,7 @@ class MoviesListAdapter(
         holder.bind(item);
         holder.movieTitle.setOnClickListener {
             clickListener.onClick(position)
-            Log.d("MainActivity", "failed againxxxxxxxxxxxxxxx ${position}")
+
         }
     }
 
