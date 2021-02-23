@@ -10,69 +10,66 @@
 
     <ImageView
         android:id="@+id/movieImage2"
-        android:layout_width="141dp"
+        android:layout_width="@dimen/dimen_141dp"
         android:layout_height="209dp"
-        android:layout_marginEnd="132dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114"
+        android:layout_marginTop="20dp"
         tools:src="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/releaseDateText"
-        android:layout_width="95dp"
-        android:layout_height="16dp"
-
-        android:layout_marginStart="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="Release date:"
-        android:textColor="#244F8E"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/blue_main"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintTop_toBottomOf="@id/movieImage2" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="75dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:text="TextView"
         android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/releaseDateText"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        />
 
     <TextView
         android:id="@+id/overView"
-        android:layout_width="95dp"
-        android:layout_height="16dp"
-        android:layout_marginStart="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
         android:text="Overview:"
         android:textColor="#244F8E"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.626" />
+        app:layout_constraintTop_toBottomOf="@id/date"
+        android:layout_marginTop="20dp"/>
 
     <TextView
         android:id="@+id/overviewText"
-        android:layout_width="300dp"
-        android:layout_height="94dp"
-        android:text="TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="Eight years after the Joker's reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City from the brutal guerrilla terrorist Bane."
         android:textColor="@color/black"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.766" />
+        android:layout_marginStart="30dp"
+        app:layout_constraintTop_toBottomOf="@id/overView"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

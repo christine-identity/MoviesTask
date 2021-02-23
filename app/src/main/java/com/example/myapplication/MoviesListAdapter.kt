@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.myapplication.databinding.FragmentMoviesListBinding
 
 class MoviesListAdapter(
     private var movies: ArrayList<Result>,
@@ -27,11 +28,10 @@ class MoviesListAdapter(
         position: Int
     ) { //takes holder and position to bind
         //  holder.bind(movies[position])
-        val item = movies[position];
-        holder.bind(item);
+        val item = movies[position]
+        holder.bind(item)
         holder.movieTitle.setOnClickListener {
             clickListener.onClick(position)
-
         }
     }
 
@@ -57,7 +57,6 @@ class MoviesListAdapter(
             releaseDate.text = movie.releaseDate;
             Glide.with(itemView)
                 .load(imgUrl)
-                .centerCrop()
                 .into(movieImage)
 
 

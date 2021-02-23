@@ -1,81 +1,90 @@
 package com.example.myapplication
 
 import ClickListener
-import android.content.Intent
+import android.app.ActionBar
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.databinding.FragmentMoviesListBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MoviesListFragment : Fragment() {
 
+private lateinit var viewModel:MoviesViewModel
 
-   var adapter: MoviesListAdapter = MoviesListAdapter(ArrayList(), object : ClickListener {
-       override fun onClick(pos: Int) {
-           val title=moviesObject[pos].title
-           val overView = moviesObject[pos].overview
-           val releaseDate = moviesObject[pos].releaseDate
-           val imageURL = moviesObject[pos].posterPath
-           val bundle = Bundle()
-           bundle.putSerializable("title",title)
-           bundle.putSerializable("overView",overView)
-           bundle.putSerializable("releaseDate",releaseDate)
-           bundle.putSerializable("imageURL",imageURL)
-          // bundle.putParcelable("id",result)
-           //val bundle = bundleOf("id" to id)
-           Log.d("fragment ", "${overView}")
-           findNavController().navigate(R.id.action_moviesListFragment_to_descriptionFragment,bundle)
+    var adapter: MoviesListAdapter = MoviesListAdapter(ArrayList(), object : ClickListener {
 
-       }
-   })
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        override fun onClick(pos: Int) {
 
+            val bundle = Bundle()
 
+//           bundle.putSerializable(MoviesListFragment.RESULT, moviesObject[pos])
+            viewModel.moviesObject.observe(viewLifecycleOwner, Observer { object1->
+
+                val bundle = Bundle()
+                bundle.putSerializable(MoviesListFragment.RESULT, object1[pos])
+              nav(bundle)
+            })
+
+        }
+    })
+    fun nav(bundle:Bundle){
+        findNavController().navigate(
+            R.id.action_moviesListFragment_to_descriptionFragment,
+            bundle
+        )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentMoviesListBinding.inflate(inflater,container,false)
+        val binding = FragmentMoviesListBinding.inflate(inflater, container, false)
 
         (activity as AppCompatActivity?)!!.supportActionBar!!.title = "Popular Movies"
+//        viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+        Log.i("hiii","view model is called")
+       // viewModel = ViewModelProvider(this).get(MoviesViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(MoviesViewModel::class.java)
+// Corutine
+//        MoviesObject.getPopularMovies(
+//            onSuccess = ::onPopularMoviesFetched,
+//            onError = ::onError
+//        )
 
-        MoviesObject.getPopularMovies(
-                onSuccess = ::onPopularMoviesFetched,
-                onError = ::onError)
+        binding.moviesList.adapter = adapter;
+        viewModel.moviesObject.observe(viewLifecycleOwner, Observer { movies->
+            adapter.updateMovies(movies)
+        })
 
-        binding.moviesList.adapter=adapter;
 
 
         return binding.root
     }
 
 
-    private val moviesObject = ArrayList<Result>()
-    private fun onPopularMoviesFetched(movies: List<Result>) {
-        Log.d("MainActivity", "Movies: ${movies}")
-        this.moviesObject.addAll(movies)
-        adapter.updateMovies(movies)
-    }
+//    private val moviesObject = ArrayList<Result>()
+//    private fun onPopularMoviesFetched(movies: List<Result>) {
+//        Log.d("MainActivity", "Movies: ${movies}")
+//        this.moviesObject.addAll(movies)
+//        adapter.updateMovies(movies)
+//    }
+//
+//    private fun onError() {
+//        Log.d("MainActivity", "failed again")
+//    }
 
-    private fun onError() {
-        Log.d("MainActivity", "failed again")
+    companion object {
+        const val RESULT = "RESULT"
     }
 }
